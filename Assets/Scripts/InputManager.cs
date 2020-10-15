@@ -7,6 +7,15 @@ using UnityEngine.UI;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] private MicrophonePitchDetector _micDetector = null;
+
+    private string _inputedNote = "";
+
+    public string InputedNote { get => _inputedNote; set => _inputedNote = value; }
+
+    private void Start()
+    {
+        _micDetector.ToggleRecord();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -23,46 +32,46 @@ public class InputManager : MonoBehaviour
             switch (s)
             {
                 case "C":
-                    print("A C was played");
+                    InputedNote = "C";
                     break;
                 case "D":
-                    print("A D was played");
+                    InputedNote = "D";
                     break;
                 case "B":
-                    print("A B was played");
+                    InputedNote = "B";
                     break;
                 case "G":
-                    print("A G was played");
+                    InputedNote = "G";
                     break;
                 case "A":
-                    print("An A was played");
+                    InputedNote = "A";
                     break;
                 case "E":
-                    print("An E was played");
+                    InputedNote = "E";
                     break;
                 case "F":
-                    print("An F was played");
+                    InputedNote = "F";
                     break;
                 case "C#":
-                    print("A C# was played");
+                    InputedNote = "C#";
                     break;
                 case "D#":
-                    print("A D# was played");
+                    InputedNote = "D#";
                     break;
-                case "#B":
-                    print("A B# was played");
+                case "B#":
+                    InputedNote = "B#";
                     break;
                 case "G#":
-                    print("A G# was played");
+                    InputedNote = "G#";
                     break;
                 case "A#":
-                    print("An A# was played");
+                    InputedNote = "A#";
                     break;
                 case "E#":
-                    print("An E# was played");
+                    InputedNote = "E#";
                     break;
                 case "F#":
-                    print("An F# was played");
+                    InputedNote = "F#";
                     break;
                 default:
                     break;

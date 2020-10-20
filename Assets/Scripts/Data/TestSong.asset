@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c4b58f9c85ef44b98ae54558b9ec0c, type: 3}
+  m_Name: TestSong
+  m_EditorClassIdentifier: 
+  _name: Defualt Song Name
+  _length: 0
+  _musicAudio: {fileID: 0}
+  notes:
+  - {fileID: 6724170661359037128, guid: 346848f12582ca649ad1a354ca3c8919, type: 3}
+  - {fileID: 6648249157120953410, guid: f41f40f554ee0be48bb61fdd9bbe7a99, type: 3}
+  - {fileID: 6724170661359037128, guid: 8a18c73e3def0314caf5328d094edc19, type: 3}
+  - {fileID: 6648249157120953410, guid: 005d72f9498370e408c57be39f45bb29, type: 3}
+  - {fileID: 2600589955261476835, guid: 8e05b066cc6213e4c856ebe005c50dfa, type: 3}
+  - {fileID: 6648249157120953410, guid: f2419bbc9f2de584594490b3b6aca420, type: 3}
+  - {fileID: 2600589955261476835, guid: 49ef6e94aee78fc43af5a5e901b5fabc, type: 3}
+  - {fileID: 6648249157120953410, guid: 005d72f9498370e408c57be39f45bb29, type: 3}
+  - {fileID: 2600589955261476835, guid: a345ffcc1af08a049bba279cb7a281f7, type: 3}

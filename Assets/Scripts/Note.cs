@@ -16,20 +16,21 @@ public class Note : NoteType
     [SerializeField] private string _name = "";
     [SerializeField] private GameObject _icon = null;
     [SerializeField] private GameObject _hitCircle = null;
-    [SerializeField] private ParticleSystem _particleEffect = null;
+    [SerializeField] private GameObject _popUpTextPrefab = null;
     [SerializeField] private TextMeshProUGUI _text = null;
     [SerializeField] private bool _hit = false;
     [SerializeField] private InputManager _im = null;
+    [SerializeField] private GameManager _gm = null;
 
     [SerializeField] private int _string = 1;
     [SerializeField] private int _fret = 1;
 
-    private float _aproachRate = 0.01f;
     private HitValue _value = HitValue.Miss;
 
     public int String { get => _string; set => _string = value; }
     public int Fret { get => _fret; set => _fret = value; }
     public InputManager Im { get => _im; set => _im = value; }
+    public GameManager Gm { get => _gm; set => _gm = value; }
 
     private void Awake()
     {
@@ -78,6 +79,27 @@ public class Note : NoteType
         if(_hit || ((size <= 0.9 && !_hit)))
         {
             print(_value);
+            switch (_value)
+            {
+                case HitValue.Miss:
+                    _gm.Combo = 0;
+                    _gm.Hp -= 25;
+                    break;
+                case HitValue.Early:
+                case HitValue.Late:
+                    Gm.Score += 50;
+                    _gm.Combo += 1;
+                    break;
+                case HitValue.Perfect:
+                    Gm.Score += 100;
+                    _gm.Hp += 5;
+                    _gm.Combo += 1;
+                    break;
+                default:
+                    break;
+            }
+            TextMeshPro text = Instantiate(_popUpTextPrefab, transform.position, Quaternion.identity).GetComponent<TextMeshPro>();
+            text.text = _value.ToString();
             Destroy(this.gameObject);
         }
 
@@ -98,7 +120,7 @@ public class Note : NoteType
        while(_hitCircle.transform.localScale.x > 0.9f)
         {
             _hitCircle.transform.localScale += new Vector3(-1, -1, 0) * Time.deltaTime;
-            yield return new WaitForSeconds(_aproachRate);
+            yield return new WaitForFixedUpdate();
         }
         yield return null;
     }

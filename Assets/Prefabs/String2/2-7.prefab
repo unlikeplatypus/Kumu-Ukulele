@@ -50,10 +50,12 @@ MonoBehaviour:
   _name: G
   _icon: {fileID: 2600589956380962993}
   _hitCircle: {fileID: 2600589956095214299}
-  _particleEffect: {fileID: 0}
+  _popUpTextPrefab: {fileID: 350326908011935684, guid: 4a7036f0f1391a3468ff88f07cd4f02f,
+    type: 3}
   _text: {fileID: 2600589956322304589}
   _hit: 0
   _im: {fileID: 0}
+  _gm: {fileID: 0}
   _string: 2
   _fret: 7
 --- !u!1 &2600589955409999966
@@ -304,8 +306,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 044e1c4a5ac708a46886429eedfad008, type: 2}
+  m_sharedMaterial: {fileID: -8200618123617701324, guid: 044e1c4a5ac708a46886429eedfad008,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

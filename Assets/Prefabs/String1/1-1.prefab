@@ -50,10 +50,12 @@ MonoBehaviour:
   _name: G#
   _icon: {fileID: 6724170661797594239}
   _hitCircle: {fileID: 6724170662203524232}
-  _particleEffect: {fileID: 0}
+  _popUpTextPrefab: {fileID: 350326908011935684, guid: 4a7036f0f1391a3468ff88f07cd4f02f,
+    type: 3}
   _text: {fileID: 6724170661770092608}
   _hit: 0
   _im: {fileID: 0}
+  _gm: {fileID: 0}
   _string: 1
   _fret: 1
 --- !u!1 &6724170661770092610
@@ -123,8 +125,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 2
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 044e1c4a5ac708a46886429eedfad008, type: 2}
+  m_sharedMaterial: {fileID: -8200618123617701324, guid: 044e1c4a5ac708a46886429eedfad008,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

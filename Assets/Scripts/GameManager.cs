@@ -19,11 +19,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreTxt = null;
     [SerializeField] private TextMeshProUGUI _comboTxt = null;
     [SerializeField] private TextMeshProUGUI _timeTxt = null;
+    [SerializeField] private GameObject _passScreen = null;
+    [SerializeField] private GameObject _failScreen = null;
+
     private bool _start = false;
 
     private int _currentIndex = 0;
 
     private bool _pauseNotes = false;
+
+    private bool _gameOver = false;
+    private bool _won = false;
 
     public int Score { 
         get => _score;
@@ -58,6 +64,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _hp = value;
+            print(_hp);
             _hpBar.value = _hp;
             _hpBar.GetComponent<Animator>().SetTrigger("Run");
             if (_hp > 50)
@@ -68,12 +75,37 @@ public class GameManager : MonoBehaviour
             {
                 _hpBarFill.color = Color.yellow;
             }
-            else
+            else if(_hp <=20 && _hp > 0)
             {
                 _hpBarFill.color = Color.red;
             }
+            else
+            {
+                _start = false;
+                Won = false;
+                GameOver = true;
+            }
         }
     }
+
+    public bool GameOver
+    {
+        get => _gameOver;
+        set
+        {
+            _gameOver = value;
+            if(Won)
+            {
+                _passScreen.SetActive(true);
+            }
+            else
+            {
+                _failScreen.SetActive(true);
+            }
+        }
+    }
+
+    public bool Won { get => _won; set => _won = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -99,8 +131,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_start) return;
-        if(!_pauseNotes) StartCoroutine(Spawn());
+        if(Counter >= _song.Length && !GameOver)
+        {
+            Won = true;
+            GameOver = true;
+        }
+        if (!_start)
+        {
+            return;
+        }
+        if (!_pauseNotes) StartCoroutine(Spawn());
     }
 
     private IEnumerator Spawn()

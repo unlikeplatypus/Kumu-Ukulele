@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManager_Old : MonoBehaviour
 {
     [SerializeField] private Song _song = null;
     [SerializeField] private float _startDelay = 0f;

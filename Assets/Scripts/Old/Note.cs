@@ -20,7 +20,7 @@ public class Note : NoteType
     [SerializeField] private TextMeshProUGUI _text = null;
     [SerializeField] private bool _hit = false;
     [SerializeField] private InputManager _im = null;
-    [SerializeField] private GameManager _gm = null;
+    [SerializeField] private GameManager_Old _gm = null;
 
     [SerializeField] private int _string = 1;
     [SerializeField] private int _fret = 1;
@@ -30,7 +30,7 @@ public class Note : NoteType
     public int String { get => _string; set => _string = value; }
     public int Fret { get => _fret; set => _fret = value; }
     public InputManager Im { get => _im; set => _im = value; }
-    public GameManager Gm { get => _gm; set => _gm = value; }
+    public GameManager_Old Gm { get => _gm; set => _gm = value; }
 
     private void Awake()
     {

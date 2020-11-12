@@ -25,56 +25,23 @@ public class InputManager : MonoBehaviour
     }
     public void ManagePitch(List<float> pitchList, int samples, float db)
     {
-        var midis = RAPTPitchDetectorExtensions.HerzToMidi(pitchList);
-        string[] notes = midis.NoteString().Split(new char[] {'0','1', '2', '3', '4', '5', '6', '7', '8', '9'});
-        foreach(string s in notes)
+        for (int i = 0; i < pitchList.Count; i++)
         {
-            switch (s)
+            if(pitchList[i] > 385 && pitchList[i] < 400)
             {
-                case "C":
-                    InputedNote = "C";
-                    break;
-                case "D":
-                    InputedNote = "D";
-                    break;
-                case "B":
-                    InputedNote = "B";
-                    break;
-                case "G":
-                    InputedNote = "G";
-                    break;
-                case "A":
-                    InputedNote = "A";
-                    break;
-                case "E":
-                    InputedNote = "E";
-                    break;
-                case "F":
-                    InputedNote = "F";
-                    break;
-                case "C#":
-                    InputedNote = "C#";
-                    break;
-                case "D#":
-                    InputedNote = "D#";
-                    break;
-                case "B#":
-                    InputedNote = "B#";
-                    break;
-                case "G#":
-                    InputedNote = "G#";
-                    break;
-                case "A#":
-                    InputedNote = "A#";
-                    break;
-                case "E#":
-                    InputedNote = "E#";
-                    break;
-                case "F#":
-                    InputedNote = "F#";
-                    break;
-                default:
-                    break;
+                InputedNote = "G";
+            }
+            else if(pitchList[i] > 256 && pitchList[i] < 260)
+            {
+                InputedNote = "C";
+            }
+            else if (pitchList[i] > 325 && pitchList[i] < 340)
+            {
+                InputedNote = "E";
+            }
+            else if (pitchList[i] > 435 && pitchList[i] < 450)
+            {
+                InputedNote = "A";
             }
         }
     }

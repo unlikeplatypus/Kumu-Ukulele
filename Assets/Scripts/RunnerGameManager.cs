@@ -14,6 +14,7 @@ public class RunnerGameManager : MonoBehaviour
     [SerializeField] private Player _player = null;
 
     [SerializeField] private GameObject _gameOverScreen = null;
+    [SerializeField] private GameObject _HUD = null;
     [SerializeField] private GameObject _pauseMenu = null;
     [SerializeField] private TextMeshProUGUI _scoreTxt = null;
 
@@ -35,12 +36,15 @@ public class RunnerGameManager : MonoBehaviour
 
     public int Score
     {
-        get => _score; set
+        get => Score1; set
         {
-            _score = value;
-            _scoreTxt.text = string.Format("{0:D5}", _score);
+            Score1 = value;
+            _scoreTxt.text = string.Format("{0:D5}", Score1);
         }
     }
+
+    public int Score1 { get => _score; set => _score = value; }
+    public Player Player { get => _player; set => _player = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -48,16 +52,18 @@ public class RunnerGameManager : MonoBehaviour
         GamePaused = false;
         _pauseMenu.SetActive(false);
         _gameOverScreen.SetActive(false);
+        _HUD.SetActive(true);
         StartCoroutine(DelaySpawn());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!_player.IsAlive)
+        if (!Player.IsAlive)
         {
             StopAllCoroutines();
             _gameOverScreen.SetActive(true);
+            _HUD.SetActive(false);
             return;
         }
         if(Input.GetKeyDown(KeyCode.Escape))

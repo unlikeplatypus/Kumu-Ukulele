@@ -53,7 +53,7 @@ namespace PitchDetector {
             Record = !Record;
         }
 
-        private void StartMic() {
+        public void StartMic() {
             StartCoroutine(RecordingCoroutine());
         }
 

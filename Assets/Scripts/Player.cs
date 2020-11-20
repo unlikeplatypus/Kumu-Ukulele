@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private RunnerGameManager _gm = null;
 
+    [SerializeField] private Animator _attackAnimator = null;
+
     private bool _delayed = false;
 
     public bool IsAlive { get => _isAlive; set => _isAlive = value; }
@@ -34,13 +36,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_delayed) return;
+        if (_delayed || !IsAlive) return;
         if (_falling)
         {
             StartCoroutine(Jump(-5));
@@ -48,7 +49,6 @@ public class Player : MonoBehaviour
             GetComponent<BoxCollider2D>().enabled = true;
             GetComponent<Animator>().SetBool("Jumping", !GetComponent<Animator>().GetBool("Jumping"));
         }
-        if (Input.GetKeyDown(KeyCode.Space)) DoAction(Action.Jump);
         switch(_im.InputedNote)
         {
             case "G":
@@ -83,8 +83,8 @@ public class Player : MonoBehaviour
                 StartCoroutine(Jump(5));
                 break;
             case Action.Fire:
-                print("Slash");
-                GetComponent<Animator>().SetTrigger("Fire");
+                GetComponent<Animator>().SetTrigger("Attack");
+                _attackAnimator.SetTrigger("Fire");
                 if (obstacle != null)
                 {
                     _gm.AddScore(100);
@@ -93,9 +93,8 @@ public class Player : MonoBehaviour
                 }
                 break;
             case Action.Ice:
-                print("Bash");
-                GetComponent<Animator>().SetTrigger("Ice");
-
+                GetComponent<Animator>().SetTrigger("Attack");
+                _attackAnimator.SetTrigger("Ice");
                 if (obstacle != null)
                 {
                     _gm.AddScore(100);
@@ -104,8 +103,8 @@ public class Player : MonoBehaviour
                 }
                 break;
             case Action.Wind:
-                print("Stab");
-                GetComponent<Animator>().SetTrigger("Wind");
+                GetComponent<Animator>().SetTrigger("Attack");
+                _attackAnimator.SetTrigger("Lightning");
 
                 if (obstacle != null)
                 {
@@ -126,6 +125,7 @@ public class Player : MonoBehaviour
             if(_hp > 0)
             {
                 _hp--;
+                GetComponent<Animator>().SetTrigger("Hurt");
                 _hpImages[_hp + 1].GetComponent<Animator>().SetBool("Empty", true);
             }
             else

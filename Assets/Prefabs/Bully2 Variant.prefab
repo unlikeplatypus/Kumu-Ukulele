@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5102404843011292148, guid: d8709614a03c68542b50bde8fbe74fef,
+        type: 3}
+      propertyPath: _speed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5102404843011292149, guid: d8709614a03c68542b50bde8fbe74fef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -80,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 5102404843011292151, guid: d8709614a03c68542b50bde8fbe74fef,
         type: 3}
       propertyPath: m_Name
-      value: Bully2
+      value: Bully2 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8709614a03c68542b50bde8fbe74fef, type: 3}

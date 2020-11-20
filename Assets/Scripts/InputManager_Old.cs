@@ -14,14 +14,14 @@ public class InputManager_Old : MonoBehaviour
 
     private void Start()
     {
-        _micDetector.ToggleRecord();
+        _micDetector.Record = true;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _micDetector.ToggleRecord();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    _micDetector.ToggleRecord();
+        //}
     }
     public void ManagePitch(List<float> pitchList, int samples, float db)
     {

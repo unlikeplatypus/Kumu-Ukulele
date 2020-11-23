@@ -5,11 +5,12 @@ using TMPro;
 
 public class RunnerGameManager : MonoBehaviour
 {
+    [SerializeField] private InputManager _im = null;
+    [SerializeField] private SceneChanger _changer = null;
+
     [SerializeField] private GameObject _spawer = null;
     [SerializeField] private float _spawnDelay = 1f;
     [SerializeField] private float _objectSpeed = 1f;
-
-    [SerializeField] private Obstacle[] _obstacles = null;
 
     [SerializeField] private Player _player = null;
 
@@ -17,6 +18,8 @@ public class RunnerGameManager : MonoBehaviour
     [SerializeField] private GameObject _HUD = null;
     [SerializeField] private GameObject _pauseMenu = null;
     [SerializeField] private TextMeshProUGUI _scoreTxt = null;
+
+    [SerializeField] private EnemyPattern[] _patterns = null;
 
     private int _score = 0;
 
@@ -71,14 +74,26 @@ public class RunnerGameManager : MonoBehaviour
             GamePaused = !GamePaused;
         }
         if (!_pauseSpawn) StartCoroutine(DelaySpawn());
+        if(_gameOverScreen.activeInHierarchy)
+        {
+
+            if(_im.InputedNote != "")
+            {
+                _changer.ChangeScene();
+            }
+        }
     }
 
     private IEnumerator DelaySpawn()
     {
         _pauseSpawn = true;
-        yield return new WaitForSeconds(Random.Range(_spawnDelay, _spawnDelay+5));
-        Obstacle ob = Instantiate(_obstacles[Random.Range(0,_obstacles.Length)], _spawer.transform.position, Quaternion.identity);
-        ob.Speed = _objectSpeed;
+        yield return new WaitForSeconds(_spawnDelay);
+        EnemyPattern pattern = _patterns[Random.Range(0, _patterns.Length)];
+        for (int i = 0; i < pattern.Pattern.Length; i++)
+        {
+            Obstacle ob = Instantiate(pattern.Pattern[i], _spawer.transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(_spawnDelay);
+        }
         _pauseSpawn = false;
     }
 

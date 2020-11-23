@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
         Jump,
         Fire,
         Ice,
-        Wind
+        Lightning
     }
 
     [SerializeField] private Transform _attackCheck = null;
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
                 DoAction(Action.Fire);
                 break;
             case "A":
-                DoAction(Action.Wind);
+                DoAction(Action.Lightning);
                 break;
             default:
                 break;
@@ -88,8 +88,7 @@ public class Player : MonoBehaviour
                 if (obstacle != null)
                 {
                     _gm.AddScore(100);
-                    Instantiate(_scorePopUp, obstacle.transform.position, Quaternion.identity);
-                    Destroy(obstacle.gameObject);
+                    obstacle.GetComponent<Obstacle>().TakeDamage(Obstacle.DamageType.Fire);
                 }
                 break;
             case Action.Ice:
@@ -98,19 +97,17 @@ public class Player : MonoBehaviour
                 if (obstacle != null)
                 {
                     _gm.AddScore(100);
-                    Instantiate(_scorePopUp, obstacle.transform.position, Quaternion.identity);
-                    Destroy(obstacle.gameObject);
+                    obstacle.GetComponent<Obstacle>().TakeDamage(Obstacle.DamageType.Ice);
                 }
                 break;
-            case Action.Wind:
+            case Action.Lightning:
                 GetComponent<Animator>().SetTrigger("Attack");
                 _attackAnimator.SetTrigger("Lightning");
 
                 if (obstacle != null)
                 {
                     _gm.AddScore(100);
-                    Instantiate(_scorePopUp, obstacle.transform.position, Quaternion.identity);
-                    Destroy(obstacle.gameObject);
+                    obstacle.GetComponent<Obstacle>().TakeDamage(Obstacle.DamageType.Lightning);
                 }
                 break;
             default:
@@ -133,6 +130,7 @@ public class Player : MonoBehaviour
                 IsAlive = false;
                 GetComponent<Animator>().SetTrigger("Death");
                 _hpImages[0].GetComponent<Animator>().SetBool("Empty", true);
+                _im.InputedNote = "";
             }
         }
     }

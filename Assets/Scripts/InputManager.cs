@@ -30,28 +30,33 @@ public class InputManager : MonoBehaviour
     {
         for (int i = 0; i < pitchList.Count; i++)
         {
-            if(pitchList[i] > 385 && pitchList[i] < 400)
+            print(pitchList[i]);
+            if(pitchList[i] > 390 && pitchList[i] < 394)
             {
                 InputedNote = "G";
                 InputedPitch = pitchList[i];
+                break;
 
             }
-            else if(pitchList[i] > 250 && pitchList[i] < 265)
+            else if(pitchList[i] > 259 && pitchList[i] < 263)
             {
                 InputedNote = "C";
                 InputedPitch = pitchList[i];
+                break;
 
             }
-            else if (pitchList[i] > 325 && pitchList[i] < 340)
+            else if (pitchList[i] > 327 && pitchList[i] < 331)
             {
                 InputedNote = "E";
                 InputedPitch = pitchList[i];
+                break;
 
             }
-            else if (pitchList[i] > 435 && pitchList[i] < 450)
+            else if (pitchList[i] > 430 && pitchList[i] < 450)
             {
                 InputedNote = "A";
                 InputedPitch = pitchList[i];
+                break;
 
             }
             else

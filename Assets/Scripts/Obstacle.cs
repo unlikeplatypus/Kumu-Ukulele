@@ -6,24 +6,32 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] protected float _speed = 6f;
 
+    [SerializeField] private DamageType _weakness;
+
+    [SerializeField] private GameObject _scorePopUp = null;
+
     public float Speed { get => _speed; set => _speed = value; }
 
     // Update is called once per frame
     void Update()
     {
-        DefaultUpdate(Speed);
+        transform.position += new Vector3(-1, 0, 0) * _speed * Time.deltaTime;
     }
 
-    protected void DefaultUpdate(float f)
+    public void TakeDamage(DamageType type)
     {
-        transform.position += new Vector3(-1, 0, 0) * f * Time.deltaTime;
+        if (type == _weakness || _weakness == DamageType.Any)
+        {
+            Instantiate(_scorePopUp, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
-
-    enum Weakness
+    public enum DamageType
     {
-        None,
+        Any,
         Fire,
-        Wind,
-        Ice
+        Ice,
+        Lightning,
+        None
     }
 }
